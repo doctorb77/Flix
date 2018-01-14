@@ -13,7 +13,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
+    
     var movies: [[String: Any]] = []
     //var details: [[String: Any]] = []
 
