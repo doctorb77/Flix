@@ -19,6 +19,9 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //self.tabBarController?.tabBar.isHidden = false
+        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector
             (NowPlayingViewController.didRefresh(_:)), for: .valueChanged)

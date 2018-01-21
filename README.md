@@ -54,52 +54,36 @@ Time spent: 8 hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] User can tap a cell to see a detail view (+5pts)
-- [ ] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView (+5pts)
+- [X] User can tap a cell to see a detail view (+5pts)
+- [X] User can tap a tab bar button to view a grid layout of Movie Posters using a CollectionView (+5pts)
 
 The following **optional** features are implemented:
 
-- [ ] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
+- [X] User can tap a poster in the collection view to see a detail screen of that movie (+3pts)
 - [ ] In the detail view, when the user taps the poster, a new screen is presented modally where they can view the trailer (+3pts)
-- [ ] Customize the navigation bar (+1pt)
+- [X] Customize the navigation bar (+1pt)
 - [ ] List in any optionals you didn't finish from last week (+1-3pts)
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] Prevented the tabbar from showing up whenever the user navigates to the details page
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How to set up more custom collection views and horizontal scrolling
+2. How hiding the tabbar can prevent awkward view flow
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/6eQt9Nk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
 Describe any challenges encountered while building the app.
-
-## License
-
-Copyright [yyyy] [name of copyright owner]
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 
 ## License
 

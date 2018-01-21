@@ -29,6 +29,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //self.tabBarController?.tabBar.isHidden = true
+        
         if let movie = movie {
             titleLabel.text = movie["title"] as? String
             releaseDateLabel.text = movie["release_date"] as? String
