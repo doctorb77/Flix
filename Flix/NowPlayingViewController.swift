@@ -28,6 +28,15 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         fetchMovies()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell) {
+            let movie = movies[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.movie = movie
+        }
+    }
+    
     @objc func didRefresh(_ refreshControl: UIRefreshControl) {
         fetchMovies()
         refreshControl.endRefreshing()
@@ -103,8 +112,6 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.posterImage.af_setImage(withURL: pURL)
 
         let rating = movie["vote_average"] as! Double
-
-        cell.s1.alpha = 1
         
         cell.s1.layer.masksToBounds = true
         cell.s1.image = UIImage(named: "Gold_Star_HalfG")
@@ -143,6 +150,7 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         
         cell.starBack.layer.masksToBounds = true
         cell.starBack.layer.cornerRadius = 5
+        
         
         //fetchDetails(movieID: id)
     
