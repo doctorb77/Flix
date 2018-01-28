@@ -28,7 +28,7 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        overviewLabel.sizeToFit()
         //self.tabBarController?.tabBar.isHidden = true
         
         if let movie = movie {

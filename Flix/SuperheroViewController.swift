@@ -11,12 +11,25 @@ import UIKit
 class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var ruler: UIView!
+    
     var movies: [[String: Any]] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.dataSource = self
+        
+        let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        let cellsPerLine: CGFloat = 2
+        let interItemSpacingTotal = layout.minimumInteritemSpacing * (cellsPerLine - 1)
+        let width = self.view.frame.width / cellsPerLine - interItemSpacingTotal / cellsPerLine
+        layout.itemSize = CGSize(width: width, height: width *  3 / 2)
+        
         fetchMovies()
+    
+        print(ruler.frame.width)
+        print(layout.itemSize.width)
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
