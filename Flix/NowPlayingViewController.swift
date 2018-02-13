@@ -14,13 +14,19 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
-    var movies: [[String: Any]] = []
+    var movies: [Movie] = []
+    var filteredMovies: [Movie] = []
     //var details: [[String: Any]] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         //self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.tintColor = UIColor.white
+        self.tabBarController?.tabBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.barTintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector
@@ -46,12 +52,27 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
     }
     
     func fetchMovies() {
+        
         tableView.estimatedRowHeight = 85.0
         tableView.rowHeight = 205.0
         
         activityIndicator.startAnimating()
         activityIndicator.hidesWhenStopped = true
         
+        MovieApiManager().nowPlayingMovies { (movies: [Movie]?, error: Error?) in
+            if let movies = movies {
+                self.movies = movies
+                self.filteredMovies = self.movies
+                self.tableView.reloadData()
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
+                    self.activityIndicator.stopAnimating()
+                    self.tableView.backgroundColor = .darkGray
+                }
+            }
+        }
+        
+        /*
         let url = URL(string: "https://api.themoviedb.org/3/movie/now_playing?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed")!
         let request = URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
         let session = URLSession(configuration: .default, delegate: nil, delegateQueue: OperationQueue.main)
@@ -61,11 +82,20 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
                 print(error.localizedDescription)
             } else if let data = data {
                 let dataDictionary = try! JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]
-                self.movies = dataDictionary["results"] as! [[String: Any]]
+                let movieDictionaries = dataDictionary["results"] as! [[String: Any]]
+                
+                self.movies = []
+                for dictionary in movieDictionaries {
+                    let movie = Movie(dictionary: dictionary)
+                    self.movies.append(movie)
+                }
+                
                 self.tableView.reloadData()
+
             }
         }
         task.resume()
+        */
 
     }
     
@@ -99,22 +129,17 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         return movies.count
     }
 
+    /*
     @available(iOS 2.0, *)
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
         
         let movie = movies[indexPath.row]
-        let title = movie["title"] as! String
-        let overview = movie["overview"] as! String
         
-        cell.titleLabel.text = title
-        cell.overviewLabel.text = overview
-        let bString = "https://image.tmdb.org/t/p/w500"
-        let pString = movie["poster_path"] as! String
-        let pURL = URL(string: bString + pString)!
-        cell.posterImage.af_setImage(withURL: pURL)
-
-        let rating = movie["vote_average"] as! Double
+        cell.titleLabel.text = movie.title
+        cell.overviewLabel.text = movie.overview
+        cell.posterImage.af_setImage(withURL: movie.posterUrl!)
+        let rating = movie.rating
         
         cell.s1.layer.masksToBounds = true
         cell.s1.image = UIImage(named: "Gold_Star_HalfG")
@@ -176,6 +201,20 @@ class NowPlayingViewController: UIViewController, UITableViewDataSource {
         cell.timeLabel.text = time
         */
         activityIndicator.stopAnimating()
+        return cell
+    } */
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieCell
+        
+        // Obtain movie information
+        let movie = filteredMovies[indexPath.row]
+        
+        // Set MovieCell fields
+        cell.movie = movie
+        cell.selectionStyle = .none
+        
         return cell
     }
 

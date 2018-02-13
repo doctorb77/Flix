@@ -125,6 +125,42 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 Describe any challenges encountered while building the app.
 
+# Lab 5 - Flix
+
+Flix is a movies app displaying box office and top rental DVDs using [The Movie Database API](http://docs.themoviedb.apiary.io/#).
+
+Time spent: 5 hours spent in total
+
+## User Stories
+
+The following **required** user stories are complete:
+
+- [x] Create a movie model (+2pt)
+- [x] Implement the movie model (+2pt)
+- [x] Implement property observers (+2pt)
+- [x] Create a basic API Client (+2pt)
+
+The following **additional** user stories are implemented:
+
+- [x] Modified Tab bar colors to better match the theme
+- [x] Also added property observer to the PosterCell class
+
+Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
+
+1. Deeper understanding of URLSessions would be nice
+2. Where else to go from here with Movie app
+
+## Video Walkthrough
+
+Here's a walkthrough of implemented user stories:
+
+<img src='https://i.imgur.com/SX3nHOV.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+
+GIF created with [LiceCap](http://www.cockos.com/licecap/).
+
+## Notes
+
+I would point out in explaining the APIManager that AlamoFire is needed
 
 ## License
 
